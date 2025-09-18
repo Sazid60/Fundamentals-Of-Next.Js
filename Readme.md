@@ -29,3 +29,28 @@ Get ready to dive in — your Next.js adventure starts here!
 - React Server Component (server side render and server side run)
 - Server Actions 
 - Route Handlers 
+
+## 51-2 Why Next.js? The competitive edge of Next.js over React.js
+- React is a js library for web and native user interfaces 
+- Next.js is the react framework for the web
+
+![alt text](image.png)
+
+### head to head comparison of React vs Next.js 
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+- Moreover Next.js is Blazing fast because of pre-rendering 
+
+#### What is rendering?
+- Rendering is a webpage is the process of turning HTML, CSS and Javascript code into an interactive page that website visitors expect to see. 
+
+##### Rendering is of Two Type 
+- `Pre Rendering` (Next.js)
+- `Client Side Rendering` (React)
+
+#### `Pre Rendering Performance Optimization is done in two ways`
+-  `Static Site generation (SSG)`
+- `Server Side Rendering (SSR)`
