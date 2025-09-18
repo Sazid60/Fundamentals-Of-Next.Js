@@ -17,3 +17,15 @@ By the end, you’ll also be comfortable with navigation, group routing with lay
 Get ready to dive in — your Next.js adventure starts here! 
 
 ## 51-1 Let's start our journey with Next.js
+
+- The React Framework For The Web (used by some of the worlds largest companies)
+- This is React With super Power 
+
+#### The Super Powers are 
+- Built In Optimization (image and font optimization will be done by default)
+- Pre-rendering (SSR +SSG) -(html file created in build time)
+- Next Level Data Fetching 
+- Powerful Routing and Layouts 
+- React Server Component (server side render and server side run)
+- Server Actions 
+- Route Handlers 
