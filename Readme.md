@@ -54,3 +54,13 @@ Get ready to dive in — your Next.js adventure starts here!
 #### `Pre Rendering Performance Optimization is done in two ways`
 -  `Static Site generation (SSG)`
 - `Server Side Rendering (SSR)`
+
+## 51-3 Clear concept of pre-rendering and client-side rendering
+
+### Client Side Rendering 
+- Client-Side Rendering (CSR) is a way of building web applications where most of the page’s content is rendered directly in the browser using JavaScript, rather than being fully generated on the server.
+
+### Pre-Rendering 
+- Pre-rendering is a technique used in modern web development where the HTML for a page is generated in advance in build time and stored the html in hosting server (before a user requests it) rather than being built on the fly in the browser (CSR) or on every request from the server (SSR).
+
+-  This makes the content immediately available when someone visits the page, improving performance and SEO.
