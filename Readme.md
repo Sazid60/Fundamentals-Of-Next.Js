@@ -176,3 +176,107 @@ export default CatchAllRoutes;
 ```
 { slug: [ '1', 'bai', 'habi', 'jani' ] }
 ```
+
+## 51-7 Let's dive deep into React server components
+- The component that directly renders in server side and runs in server side is called server component 
+
+![alt text](image-9.png)
+
+- converting server component to client component 
+- app -> counter -> page.tsx
+```tsx 
+"use client"
+import React, { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div className="flex flex-col items-center gap-4 p-6">
+      <h1 className="text-2xl font-bold">Counter: {count}</h1>
+      <div className="flex gap-2">
+        <button
+          onClick={() => setCount(count + 1)}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg shadow"
+        >
+          +
+        </button>
+        <button
+          onClick={() => setCount(prev => Math.max(prev - 1, 0))}
+          className="px-4 py-2 bg-red-500 text-white rounded-lg shadow"
+        >
+          -
+        </button>
+        <button
+          onClick={() => setCount(0)}
+          className="px-4 py-2 bg-gray-500 text-white rounded-lg shadow"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  )
+}
+
+```
+
+- this is not a best practice we can not enjoy server component facilities here. what to dow now? 
+
+![alt text](image-10.png)
+
+- we will just make the client component where these is interactivity required. 
+- best practice 
+- src -> components -> Counter.tsx
+
+```tsx 
+"use client"
+import React, { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div className="flex flex-col items-center gap-4 p-6">
+      <h1 className="text-2xl font-bold">Counter: {count}</h1>
+      <div className="flex gap-2">
+        <button
+          onClick={() => setCount(count + 1)}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg shadow"
+        >
+          +
+        </button>
+        <button
+          onClick={() => setCount(prev => Math.max(prev - 1, 0))}
+          className="px-4 py-2 bg-red-500 text-white rounded-lg shadow"
+        >
+          -
+        </button>
+        <button
+          onClick={() => setCount(0)}
+          className="px-4 py-2 bg-gray-500 text-white rounded-lg shadow"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  )
+}
+
+```
+
+- src -> app -> counter -> page.tsx 
+
+```tsx 
+import Counter from '@/components/Counter';
+import React from 'react';
+
+const CounterPage = () => {
+    return (
+        <div>
+            <Counter />
+        </div>
+    );
+};
+
+export default CounterPage;
+```
