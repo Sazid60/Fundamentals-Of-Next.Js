@@ -129,7 +129,7 @@ const DynamicBlogPage = async ({
   params: Promise<{ blogId: string }>;
 }) => {
   // as its a server component by default we can use async
-  // as this is a server component we are getting the params as promise 
+  // as this is a server component we are getting the params as promise
 
   const { blogId } = await params;
 
@@ -148,48 +148,54 @@ export default DynamicBlogPage;
 http://localhost:3000/blog/1
 ```
 
-- lets handle more dynamic route like 
+- lets handle more dynamic route like
 
 ```
 http://localhost:3000/blog/1/bai/habi/jani
 ```
-- for dealing this kind of nested dynamic routes we need to use catch all routes 
+
+- for dealing this kind of nested dynamic routes we need to use catch all routes
 
 - blog -> `[...slug]`
 
-```tsx 
-const CatchAllRoutes = async ({params}:{params : Promise<{slug :string[]}>}) => {
-    console.log(await params)
-    return (
-        <div>
-            <h1>Catch All Routes </h1>
-        </div>
-    );
+```tsx
+const CatchAllRoutes = async ({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) => {
+  console.log(await params);
+  return (
+    <div>
+      <h1>Catch All Routes </h1>
+    </div>
+  );
 };
 
 export default CatchAllRoutes;
 ```
 
-- we will  get the things in array of object
-
+- we will get the things in array of object
 
 ```
 { slug: [ '1', 'bai', 'habi', 'jani' ] }
 ```
 
 ## 51-7 Let's dive deep into React server components
-- The component that directly renders in server side and runs in server side is called server component 
+
+- The component that directly renders in server side and runs in server side is called server component
 
 ![alt text](image-9.png)
 
-- converting server component to client component 
+- converting server component to client component
 - app -> counter -> page.tsx
-```tsx 
-"use client"
-import React, { useState } from 'react'
+
+```tsx
+"use client";
+import React, { useState } from "react";
 
 export default function Counter() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="flex flex-col items-center gap-4 p-6">
@@ -202,7 +208,7 @@ export default function Counter() {
           +
         </button>
         <button
-          onClick={() => setCount(prev => Math.max(prev - 1, 0))}
+          onClick={() => setCount((prev) => Math.max(prev - 1, 0))}
           className="px-4 py-2 bg-red-500 text-white rounded-lg shadow"
         >
           -
@@ -215,25 +221,24 @@ export default function Counter() {
         </button>
       </div>
     </div>
-  )
+  );
 }
-
 ```
 
-- this is not a best practice we can not enjoy server component facilities here. what to dow now? 
+- this is not a best practice we can not enjoy server component facilities here. what to dow now?
 
 ![alt text](image-10.png)
 
-- we will just make the client component where these is interactivity required. 
-- best practice 
+- we will just make the client component where these is interactivity required.
+- best practice
 - src -> components -> Counter.tsx
 
-```tsx 
-"use client"
-import React, { useState } from 'react'
+```tsx
+"use client";
+import React, { useState } from "react";
 
 export default function Counter() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="flex flex-col items-center gap-4 p-6">
@@ -246,7 +251,7 @@ export default function Counter() {
           +
         </button>
         <button
-          onClick={() => setCount(prev => Math.max(prev - 1, 0))}
+          onClick={() => setCount((prev) => Math.max(prev - 1, 0))}
           className="px-4 py-2 bg-red-500 text-white rounded-lg shadow"
         >
           -
@@ -259,23 +264,22 @@ export default function Counter() {
         </button>
       </div>
     </div>
-  )
+  );
 }
-
 ```
 
-- src -> app -> counter -> page.tsx 
+- src -> app -> counter -> page.tsx
 
-```tsx 
-import Counter from '@/components/Counter';
-import React from 'react';
+```tsx
+import Counter from "@/components/Counter";
+import React from "react";
 
 const CounterPage = () => {
-    return (
-        <div>
-            <Counter />
-        </div>
-    );
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
 };
 
 export default CounterPage;
@@ -284,38 +288,35 @@ export default CounterPage;
 ## 51-8 Link and Programmatic Navigation
 
 - for navigation we have `Link` that uses a href under the hood and extends and skips reloading the page.
-- src -> components -> Navbar.tsx 
+- src -> components -> Navbar.tsx
 
 ```tsx
 import Link from "next/link";
 import React from "react";
 
 export default function Navbar() {
-    return (
-        <nav className="w-full bg-gray-900 text-white px-6 py-3 flex items-center justify-between">
-            {/* Logo / Brand */}
-            <div className="text-xl font-bold">
-                <Link href="/">
-                    NextJs
-                </Link>
-            </div>
+  return (
+    <nav className="w-full bg-gray-900 text-white px-6 py-3 flex items-center justify-between">
+      {/* Logo / Brand */}
+      <div className="text-xl font-bold">
+        <Link href="/">NextJs</Link>
+      </div>
 
-            {/* Links */}
-            <div className="flex space-x-6">
-                <Link href="/about" className="hover:text-gray-300">
-                    About
-                </Link>
-                <Link href="/contact" className="hover:text-gray-300">
-                    Contact
-                </Link>
-                <Link href="/login" className="hover:text-gray-300">
-                    Login
-                </Link>
-            </div>
-        </nav>
-    );
+      {/* Links */}
+      <div className="flex space-x-6">
+        <Link href="/about" className="hover:text-gray-300">
+          About
+        </Link>
+        <Link href="/contact" className="hover:text-gray-300">
+          Contact
+        </Link>
+        <Link href="/login" className="hover:text-gray-300">
+          Login
+        </Link>
+      </div>
+    </nav>
+  );
 }
-
 ```
 
 - to make the navbar and footer available for all devices we will have to use the src ->app -> layout.tsx
@@ -352,31 +353,29 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <main className="min-h-dvh">
-          {children}
-        </main>
+        <main className="min-h-dvh">{children}</main>
 
-        <footer className="text-center text-4xl my-5">
-          This is Footer
-        </footer>
+        <footer className="text-center text-4xl my-5">This is Footer</footer>
       </body>
     </html>
   );
 }
-
 ```
-- app -> dashboard -> page.tsx 
+
+- app -> dashboard -> page.tsx
 - we can stop prefetch bu using `prefetch={false}`
 
-```tsx 
+```tsx
 import Link from "next/link";
 
 const HomePage = () => {
   return (
     <div>
       <h1 className="text-4xl">Next.js Hello!</h1>
-      <Link prefetch={false}  href="/dashboard">
-        <button className="border rounded-md hover:space-x-1.5">Dashboard</button>
+      <Link prefetch={false} href="/dashboard">
+        <button className="border rounded-md hover:space-x-1.5">
+          Dashboard
+        </button>
       </Link>
     </div>
   );
@@ -384,41 +383,49 @@ const HomePage = () => {
 
 export default HomePage;
 ```
+
 - now lets see how we can do navigation programmatically. we have to use `useRouter` hook from `next/navigation`
 
 ```tsx
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
 
 const HomePage = () => {
-  const router = useRouter()
+  const router = useRouter();
   const handleNavigation = () => {
-    router.push("/dashboard")
-  }
+    router.push("/dashboard");
+  };
   return (
     <div>
       <h1 className="text-4xl">Next.js Hello!</h1>
 
-      <button onClick={handleNavigation} className="border rounded-md hover:space-x-1.5">Dashboard</button>
+      <button
+        onClick={handleNavigation}
+        className="border rounded-md hover:space-x-1.5"
+      >
+        Dashboard
+      </button>
     </div>
   );
 };
 
 export default HomePage;
 ```
-- this will not prefetch and will take me to the desired route 
+
+- this will not prefetch and will take me to the desired route
 
 ## 51-9 Explore group routing with different layouts.
 
 - In this lesson we explore how **Route Groups** in Next.js App Router allow us to organize routes and apply different layouts.  
-Sometimes we want certain routes (like `about`, `contact`) to have a **header and footer**, while other routes (like `login`, `register`) should not include them.  
-This can be done easily with **conditional layouts using Route Groups**.
+  Sometimes we want certain routes (like `about`, `contact`) to have a **header and footer**, while other routes (like `login`, `register`) should not include them.  
+  This can be done easily with **conditional layouts using Route Groups**.
 
 ---
 
 ### What are Route Groups?
-- Route Groups let us **organize routes without affecting the URL path**.  
-- We create a folder wrapped in parentheses `( )` inside the `app` directory.  
+
+- Route Groups let us **organize routes without affecting the URL path**.
+- We create a folder wrapped in parentheses `( )` inside the `app` directory.
 - Useful for applying **different layouts** to different parts of the app.
 
 ---
@@ -441,50 +448,82 @@ app/
 
 ```
 
-- In our project we will use something like all public routes will be inside common layout and dashboard routes will be in dashboardLayout 
+- In our project we will use something like all public routes will be inside common layout and dashboard routes will be in dashboardLayout
 
-- app directory page i mean home page is taken tyo the common layout page so that it gets the common layout. how the app works now? it will come to app directory and will see there is no page.tsx. as not available it will  search in (commonLayout) or (dashboardLayout) as these do not create routes 
+- app directory page i mean home page is taken tyo the common layout page so that it gets the common layout. how the app works now? it will come to app directory and will see there is no page.tsx. as not available it will search in (commonLayout) or (dashboardLayout) as these do not create routes
 
 ![alt text](image-11.png)
 
-- (commonLayout) -> layout.tsx 
+- (commonLayout) -> layout.tsx
 
 ```tsx
 import Navbar from "@/components/Navbar";
 
-
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <div className="">
-            <Navbar/>
-            {children}
-        </div>
-    );
+  return (
+    <div className="">
+      <Navbar />
+      {children}
+    </div>
+  );
 };
 
 export default CommonLayout;
 ```
-- the thing is common layout group routes will get the layout and ultimately pass through the main layout as well. 
 
+- the thing is common layout group routes will get the layout and ultimately pass through the main layout as well.
 
-- (dashboardLayout) -> layout.tsx 
+- (dashboardLayout) -> layout.tsx
 
-```tsx 
+```tsx
 import Sidebar from "@/components/Sidebar";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <div className="flex">
-            <Sidebar/>
-            {children}
-        </div>
-    );
+  return (
+    <div className="flex">
+      <Sidebar />
+      {children}
+    </div>
+  );
 };
 
 export default DashboardLayout;
-
 ```
-- accordingly these dashboard layout grouped routes will get the dashboard layout and common layout grouped layout will get the common layout . and ultimately will pass through the main layout and show. 
 
-- if we want to modify the not-found route we have to create `not-found.tsx` inside app folder 
+- accordingly these dashboard layout grouped routes will get the dashboard layout and common layout grouped layout will get the common layout . and ultimately will pass through the main layout and show.
 
+- if we want to modify the not-found route we have to create `not-found.tsx` inside app folder
+
+## 51-10 Explore built-in CSS module support. Module summary.
+
+- suppose we want to navigate and want to reset the sate we have to do it manually because re-render do not happens. To do this we have a tech like layout named `template`
+- we just have to replace the layout with the template. will look same as layout file.
+
+![alt text](image-12.png)
+
+#### Lets see the css module support
+
+- CSS Modules in Next.js are a way of writing CSS so that the styles are scoped locally to the component that imports them.
+  Each class name and animation name is automatically transformed into a unique identifier at build time.
+
+➡️ This means styles do not leak outside the component and cannot conflict with other styles in your project.
+
+![alt text](image-13.png)
+
+```css
+.text_style {
+  color: red;
+  font-size: 30px;
+}
+```
+
+```tsx
+import styles from "./About.module.css";
+
+const AboutPage = () => {
+  return <h1 className={styles.text_style}>About Page</h1>;
+};
+
+export default AboutPage;
+```
+- CSS Modules = Local Scoped CSS, Prevents conflicts across the app. Next.js automatically supports it (no config needed).
