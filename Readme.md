@@ -52,7 +52,7 @@ Get ready to dive in — your Next.js adventure starts here!
 - `Client Side Rendering` (React)
 
 #### `Pre Rendering Performance Optimization is done in two ways`
--  `Static Site generation (SSG)`
+- `Static Site generation (SSG)`
 - `Server Side Rendering (SSR)`
 
 ## 51-3 Clear concept of pre-rendering and client-side rendering
@@ -64,3 +64,19 @@ Get ready to dive in — your Next.js adventure starts here!
 - Pre-rendering is a technique used in modern web development where the HTML for a page is generated in advance in build time and stored the html in hosting server (before a user requests it) rather than being built on the fly in the browser (CSR) or on every request from the server (SSR).
 
 -  This makes the content immediately available when someone visits the page, improving performance and SEO.
+
+## 51-4 Create my first Next.js app
+
+[Next.js](https://nextjs.org/)
+
+#### Install Next.js 
+
+```
+npx create-next-app@latest
+```
+
+![alt text](image-3.png)
+
+- src -> app -> app router/app Directory (routing related works will be done here)
+
+[Next.js Documentation](https://nextjs.org/docs/app/getting-started/installation)
