@@ -407,3 +407,84 @@ const HomePage = () => {
 export default HomePage;
 ```
 - this will not prefetch and will take me to the desired route 
+
+## 51-9 Explore group routing with different layouts.
+
+- In this lesson we explore how **Route Groups** in Next.js App Router allow us to organize routes and apply different layouts.  
+Sometimes we want certain routes (like `about`, `contact`) to have a **header and footer**, while other routes (like `login`, `register`) should not include them.  
+This can be done easily with **conditional layouts using Route Groups**.
+
+---
+
+### What are Route Groups?
+- Route Groups let us **organize routes without affecting the URL path**.  
+- We create a folder wrapped in parentheses `( )` inside the `app` directory.  
+- Useful for applying **different layouts** to different parts of the app.
+
+---
+
+### Example Folder Structure
+
+```bash
+app/
+ ├─ (main)/
+ │   ├─ layout.tsx   # Has Header + Footer
+ │   ├─ about/
+ │   ├─ contact/
+ │   └─ page.tsx
+ ├─ (auth)/
+ │   ├─ layout.tsx   # No Header/Footer
+ │   ├─ login/
+ │   ├─ register/
+ │   └─ page.tsx
+ └─ globals.css
+
+```
+
+- In our project we will use something like all public routes will be inside common layout and dashboard routes will be in dashboardLayout 
+
+- app directory page i mean home page is taken tyo the common layout page so that it gets the common layout. how the app works now? it will come to app directory and will see there is no page.tsx. as not available it will  search in (commonLayout) or (dashboardLayout) as these do not create routes 
+
+![alt text](image-11.png)
+
+- (commonLayout) -> layout.tsx 
+
+```tsx
+import Navbar from "@/components/Navbar";
+
+
+const CommonLayout = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <div className="">
+            <Navbar/>
+            {children}
+        </div>
+    );
+};
+
+export default CommonLayout;
+```
+- the thing is common layout group routes will get the layout and ultimately pass through the main layout as well. 
+
+
+- (dashboardLayout) -> layout.tsx 
+
+```tsx 
+import Sidebar from "@/components/Sidebar";
+
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <div className="flex">
+            <Sidebar/>
+            {children}
+        </div>
+    );
+};
+
+export default DashboardLayout;
+
+```
+- accordingly these dashboard layout grouped routes will get the dashboard layout and common layout grouped layout will get the common layout . and ultimately will pass through the main layout and show. 
+
+- if we want to modify the not-found route we have to create `not-found.tsx` inside app folder 
+
