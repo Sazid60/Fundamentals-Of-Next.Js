@@ -80,3 +80,12 @@ npx create-next-app@latest
 - src -> app -> app router/app Directory (routing related works will be done here)
 
 [Next.js Documentation](https://nextjs.org/docs/app/getting-started/installation)
+
+## 51-5 Basic routing concept and nested routing
+- each and every folder under the app folder will be a route. like about, contact 
+
+![alt text](image-4.png)
+
+- nested routing 
+
+![alt text](image-5.png)
