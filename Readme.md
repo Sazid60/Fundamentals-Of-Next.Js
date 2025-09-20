@@ -496,7 +496,7 @@ export default DashboardLayout;
 
 ## 51-10 Explore built-in CSS module support. Module summary.
 
-- suppose we want to navigate and want to reset the sate we have to do it manually because re-render do not happens. To do this we have a tech like layout named `template`
+- suppose we want to navigate and want to reset the state we have to do it manually because re-render do not happens. To do this we have a tech like layout named `template`
 - we just have to replace the layout with the template. will look same as layout file.
 
 ![alt text](image-12.png)
